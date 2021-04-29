@@ -14,5 +14,11 @@ export COMPOSE_DOCKER_CLI_BUILD=0
 - docker run react-app
 - docker run -d react-app #-d is detached mode
 
+- docker exec -it CONTAINER_NAME sh #run shell in container
+
+- docker start CONTAINER #starts a stopped container
+
+- docker container prune #get rid of all stopped containers
+
 - docker image tag 879afb330dc0 austin2153/react-app:1.0.0 #tag an existing image with a tag
 
