@@ -8,6 +8,9 @@ RUN mkdir -p /app && chown app:app /app
 USER app
 WORKDIR /app
 
+# Create app directory
+RUN mkdir data
+
 # Copy app files and install node modules
 COPY --chown=app:app package*.json ./
 RUN npm install
