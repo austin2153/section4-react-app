@@ -1,4 +1,4 @@
-## docker config
+### docker config
 https://stackoverflow.com/questions/65361083/docker-build-failed-to-fetch-oauth-token-for-openjdk
 
 ```
@@ -6,21 +6,18 @@ export DOCKER_BUILDKIT=0
 export COMPOSE_DOCKER_CLI_BUILD=0
 ```
 
-## docker commands
+### docker commands
 - docker build -t react-app .
 - docker build -t react-appaustin2153/react-app
 
-
-
+### misc
 - docker exec -it CONTAINER_NAME sh #run shell in container
-
 - docker start CONTAINER #starts a stopped container
-
 - docker container prune #get rid of all stopped containers
-
 - docker image tag 879afb330dc0 austin2153/react-app:1.0.0 #tag an existing image with a tag
+- docker exec -it d8ff sh
 
-## volumes
+### volumes
 - docker volume create app-data
 - docker volume inspect app-data
 
@@ -48,11 +45,27 @@ export COMPOSE_DOCKER_CLI_BUILD=0
 - docker run -d -p 5000:3000 -v app-data:/app/data react-app
 - docker run -d -p 5000:3000 --mount source=app-data,target=/app/data react-app
 
-```
---mount source=app-data,target=/app/data
-- docker exec -it d8ff sh
-```
-
 ### docker cp
-- docker cp CONTAINER:FULLPATH LOCALDIRECTORY
+- docker cp CONTAINER:FULLPATH LOCALDIRECTORY *Copy a file from container to host*
 - docker cp 6d128bc46daf:/app/log.txt .
+- docker cp secret.txt 6d128bc46daf:/app *Copy file from host to container*
+
+### sharing source with container
+- docker run -d -p 5000:3000 -v $(pwd):/app -v app-data:/app/data react-app
+- docker run -d -p 5000:3000 -v /home/austin/github/section4-react-app:/app react-app
+
+    ```
+    npm ERR! code ENOENT
+    npm ERR! syscall open
+    npm ERR! path /app/package.json
+    npm ERR! errno -2
+    npm ERR! enoent ENOENT: no such file or directory, open '/app/package.json'
+    npm ERR! enoent This is related to npm not being able to find a file.
+    npm ERR! enoent
+
+    npm ERR! A complete log of this run can be found in:
+    npm ERR!     /home/app/.npm/_logs/2021-04-30T01_37_36_851Z-debug.log
+    ```
+
+### docker logs
+- docker logs -f 7d8d *see the changes as the container is started*
