@@ -12,7 +12,7 @@ WORKDIR /app
 RUN mkdir data
 
 # Copy app files and install node modules
-COPY package*.json ./
+COPY package*.json .
 RUN npm install
 COPY . .
 ENV API_URL=http://api.myapp.com

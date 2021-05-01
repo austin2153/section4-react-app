@@ -52,6 +52,7 @@ export COMPOSE_DOCKER_CLI_BUILD=0
 
 ### sharing source with container
 - docker run -d -p 5000:3000 -v $(pwd):/app -v app-data:/app/data react-app
+- docker run -p 5000:3000 -v $(pwd):/app react-app
 - docker run -v /mnt/c/Users/acampbell/wsl/dev/voltest:/app voltest
 
     ```
@@ -87,3 +88,6 @@ enoent ENOENT: no such file or directory enoent This is related to npm not being
 ### clean up images and containers
 - docker image prune
 - docker container prune
+
+### login with root user
+docker exec -it -u root a13ef sh
